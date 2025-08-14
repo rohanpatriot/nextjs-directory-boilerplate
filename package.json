@@ -1,6 +1,7 @@
 {
-  "name": "classical-virtues",
+  "name": "nextjs-directory-boilerplate",
   "version": "0.1.0",
+  "description": "A modern, customizable directory/blog template built with Next.js, MDX, and shadcn/ui",
   "private": true,
   "scripts": {
     "dev": "next dev",

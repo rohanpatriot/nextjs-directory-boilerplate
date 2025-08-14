@@ -1,9 +1,11 @@
 # Next.js Directory/Blog Boilerplate
 
-A modern, customizable directory/blog template built with Next.js, MDX, and shadcn/ui. Perfect for creating content-driven websites, directories, portfolios, or blogs.
+A modern, customizable directory/blog template built with Next.js, MDX, and shadcn/ui. Perfect for creating content-driven websites, directories, portfolios, blogs, or educational content collections like stories, articles, and guides.
+
+This boilerplate provides a flexible foundation for organizing and presenting content with built-in search, filtering, and responsive design. Whether you're building a company directory, blog, educational resource, or content showcase, this template offers the tools you need to get started quickly.
 
 ## Quick Deploy w/ Vercel
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fhuntsyea%2Fnextjs-directory-boilerplate&project-name=nextjs-boilerplate&repository-name=nextjs-boilerplate&skippable-integrations=1)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Frohanpatriot%2Fnextjs-directory-boilerplate&project-name=nextjs-directory-boilerplate&repository-name=nextjs-directory-boilerplate&skippable-integrations=1)
 
 ## Features
 
@@ -12,10 +14,23 @@ A modern, customizable directory/blog template built with Next.js, MDX, and shad
 - 🔍 **Search & Filtering** - Built-in content search and tag filtering
 - 📱 **Responsive Layout** - Mobile-first design approach
 - 🖼️ **Image Optimization** - Automatic image optimization with Next.js
-- 🎵 **Audio Support** - Optional audio player for content
-- 🏷️ **Tag System** - Organize content with tags
+- 🎵 **Audio Support** - Optional audio player for content (great for podcasts, stories, etc.)
+- 🏷️ **Tag System** - Organize content with tags and categories
 - ⚡ **Fast Page Loads** - Static site generation for optimal performance
 - 🎯 **SEO Optimized** - Built-in SEO best practices
+- 🔧 **Highly Configurable** - Easy configuration through a single config file
+- 📖 **Multi-Content Types** - Support for different content categories (stories, articles, posts, etc.)
+
+## Use Cases
+
+This boilerplate is perfect for:
+
+- **Educational Content** - Story collections, lesson libraries, course materials
+- **Company Directories** - Team member profiles, service catalogs, resource libraries
+- **Blogs & Magazines** - Personal blogs, company blogs, digital magazines
+- **Portfolio Sites** - Project showcases, case studies, work samples
+- **Documentation Sites** - API docs, user guides, knowledge bases
+- **Content Libraries** - Article collections, research papers, media libraries
 
 ## Tech Stack
 
@@ -29,7 +44,7 @@ A modern, customizable directory/blog template built with Next.js, MDX, and shad
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/huntsyea/nextjs-directory-boilerplate/
+   git clone https://github.com/rohanpatriot/nextjs-directory-boilerplate
    ```
 
 2. Install dependencies:
@@ -43,6 +58,21 @@ A modern, customizable directory/blog template built with Next.js, MDX, and shad
    ```
 
 4. Open [http://localhost:3000](http://localhost:3000) to see your site
+
+5. Start customizing:
+   - Replace the example content in `src/content/` with your own MDX files
+   - Update `src/config/directory.config.ts` with your site information
+   - Modify the styling and components to match your brand
+
+## What You'll Get
+
+![Next.js Directory Boilerplate Screenshot](https://github.com/user-attachments/assets/67e8cb19-d816-42e7-9911-01d87955c185)
+
+Out of the box, you'll have a fully functional content directory with:
+- A clean, responsive homepage with search and filtering
+- Individual content pages with rich formatting
+- Tag-based content organization
+- Mobile-friendly responsive design
 
 ## Project Structure
 
@@ -110,6 +140,9 @@ Content goes here...
 | date     | No       | Publication date               |
 | author   | No       | Content author                 |
 | audioUrl | No       | URL to associated audio file   |
+| virtue   | No       | Key lesson or takeaway (custom field example) |
+
+> **Note**: You can add custom fields to the frontmatter as needed. The `virtue` field shown above is an example of how you can extend the metadata for specific content types.
 
 ## Customization
 
