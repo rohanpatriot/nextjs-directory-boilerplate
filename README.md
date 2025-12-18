@@ -1,10 +1,7 @@
 # Next.js Directory/Blog Boilerplate
 
-A modern, customizable directory/blog template built with Next.js, MDX, and shadcn/ui. Perfect for creating content-driven websites, directories, portfolios, blogs, or educational content collections like stories, articles, and guides.
+A modern, customizable directory/blog template built with Next.js 15, MDX, and shadcn/ui. Perfect for creating content-driven websites, directories, portfolios, blogs, or educational content collections.
 
-This boilerplate provides a flexible foundation for organizing and presenting content with built-in search, filtering, and responsive design. Whether you're building a company directory, blog, educational resource, or content showcase, this template offers the tools you need to get started quickly.
-
-## Quick Deploy w/ Vercel
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Frohanpatriot%2Fnextjs-directory-boilerplate&project-name=nextjs-directory-boilerplate&repository-name=nextjs-directory-boilerplate&skippable-integrations=1)
 
 ## Features
@@ -14,172 +11,118 @@ This boilerplate provides a flexible foundation for organizing and presenting co
 - 🔍 **Search & Filtering** - Built-in content search and tag filtering
 - 📱 **Responsive Layout** - Mobile-first design approach
 - 🖼️ **Image Optimization** - Automatic image optimization with Next.js
-- 🎵 **Audio Support** - Optional audio player for content (great for podcasts, stories, etc.)
+- 🎵 **Audio Support** - Optional audio player for podcasts, stories, etc.
 - 🏷️ **Tag System** - Organize content with tags and categories
 - ⚡ **Fast Page Loads** - Static site generation for optimal performance
-- 🎯 **SEO Optimized** - Built-in SEO best practices
-- 🔧 **Highly Configurable** - Easy configuration through a single config file
-- 📖 **Multi-Content Types** - Support for different content categories (stories, articles, posts, etc.)
-
-## Use Cases
-
-This boilerplate is perfect for:
-
-- **Educational Content** - Story collections, lesson libraries, course materials
-- **Company Directories** - Team member profiles, service catalogs, resource libraries
-- **Blogs & Magazines** - Personal blogs, company blogs, digital magazines
-- **Portfolio Sites** - Project showcases, case studies, work samples
-- **Documentation Sites** - API docs, user guides, knowledge bases
-- **Content Libraries** - Article collections, research papers, media libraries
+- 🌙 **Dark Mode** - System preference detection with manual toggle
+- 🗺️ **SEO Infrastructure** - Auto-generated sitemap, RSS feed, and JSON-LD
+- 🔧 **Config-Driven** - Easy configuration through config files
+- 📖 **Multi-Content Types** - Support for different content categories
 
 ## Tech Stack
 
-- **Framework**: [Next.js 14](https://nextjs.org/)
+- **Framework**: [Next.js 15](https://nextjs.org/) with React 19
+- **Package Manager**: [pnpm](https://pnpm.io/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **UI Components**: [shadcn/ui](https://ui.shadcn.com/)
 - **Content**: [MDX](https://mdxjs.com/)
+- **Theming**: [next-themes](https://github.com/pacocoursey/next-themes)
 - **Typography**: Google Fonts (Cormorant Garamond & Nunito)
 
-## Getting Started
+## Quick Start
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/rohanpatriot/nextjs-directory-boilerplate
-   ```
+```bash
+# Clone the repository
+git clone https://github.com/rohanpatriot/nextjs-directory-boilerplate
+cd nextjs-directory-boilerplate
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+# Install dependencies
+pnpm install
 
-3. Run the development server:
-   ```bash
-   npm run dev
-   ```
+# Start development server
+pnpm dev
+```
 
-4. Open [http://localhost:3000](http://localhost:3000) to see your site
-
-5. Start customizing:
-   - Replace the example content in `src/content/` with your own MDX files
-   - Update `src/config/directory.config.ts` with your site information
-   - Modify the styling and components to match your brand
-
-## What You'll Get
-
-![Next.js Directory Boilerplate Screenshot](https://github.com/user-attachments/assets/67e8cb19-d816-42e7-9911-01d87955c185)
-
-Out of the box, you'll have a fully functional content directory with:
-- A clean, responsive homepage with search and filtering
-- Individual content pages with rich formatting
-- Tag-based content organization
-- Mobile-friendly responsive design
+Open [http://localhost:3000](http://localhost:3000) to see your site.
 
 ## Project Structure
 
 ```
-src/
-├── app/ # Next.js app directory
-│ ├── content/ # Content page routes
-│ ├── stories/ # Story page routes
-│ ├── tags/ # Tag page routes
-│ ├── layout.tsx # Root layout component
-│ ├── not-found.tsx # 404 page component
-│ └── page.tsx # Home page
-├── components/ # React components
-│ ├── layout/ # Layout components
-│ ├── ui/ # UI components
-│ ├── AudioPlayer.tsx # Audio player component
-│ ├── ErrorBoundary.tsx # Error boundary component
-│ ├── Navbar.tsx # Navbar component
-│ ├── Pagination.tsx # Pagination component
-│ ├── Search/ # Search components
-│ ├── Search.tsx # Search component
-│ ├── summaryCard.tsx # Summary card component
-│ └── TagFilter.tsx # Tag filter component
-├── config/ # Site configuration (src/config)
-│ └── directory.config.ts
-├── content/ # MDX content files (src/content)
-├── lib/ # Utility functions
-│ ├── content.ts # Content management
-│ ├── metadata.ts # Metadata generation
-│ ├── posts.ts # Post management
-│ └── utils.ts # Utility functions
-├── stories/ # MDX story files
-├── types/ # TypeScript types
-│ └── content.ts
-└── app/globals.css # Global styles
+├── content/                  # MDX content files
+│   ├── articles/            # Blog articles
+│   └── stories/             # Story content
+├── src/
+│   ├── app/                 # Next.js App Router
+│   │   ├── [contentType]/   # Dynamic content routes
+│   │   ├── tags/            # Tag pages
+│   │   ├── feed.xml/        # RSS feed
+│   │   ├── sitemap.ts       # Dynamic sitemap
+│   │   └── robots.ts        # Robots.txt
+│   ├── components/          # React components
+│   │   └── ui/              # shadcn/ui components
+│   ├── config/              # Configuration
+│   │   ├── content.config.ts    # Content type definitions
+│   │   └── directory.config.ts  # Site settings
+│   └── lib/
+│       ├── content/         # Content system
+│       ├── metadata.ts      # SEO metadata
+│       └── structured-data.tsx  # JSON-LD schemas
 ```
 
-## Content Structure
+## Content
 
-Content is written in MDX format with frontmatter metadata. Create new `.mdx` files in the `src/content` directory:
+Add MDX files to `content/articles/` or `content/stories/`:
 
 ```mdx
 ---
-title: 'Example Post'
-topic: 'Topic'
-image: '/image.png'
-summary: "Brief summary"
+title: 'My Post Title'
+summary: 'Brief description'
+date: '2024-01-15'
+author: 'Your Name'
 tags: ['tag1', 'tag2']
-date: '2024-01-01'
-author: 'Author Name'
+image: '/images/post-image.jpg'
 ---
 
-Content goes here...
+Your content here...
 ```
 
-### Available Frontmatter Fields
+See [Content System docs](docs/content-system.md) for all frontmatter fields and adding custom content types.
 
-| Field    | Required | Description                    |
-|----------|----------|--------------------------------|
-| title    | Yes      | Content title                  |
-| topic    | No       | Content topic/category         |
-| image    | No       | Featured image path            |
-| summary  | No       | Brief content summary          |
-| tags     | No       | Array of related tags          |
-| date     | No       | Publication date               |
-| author   | No       | Content author                 |
-| audioUrl | No       | URL to associated audio file   |
-| virtue   | No       | Key lesson or takeaway (custom field example) |
+## Configuration
 
-> **Note**: You can add custom fields to the frontmatter as needed. The `virtue` field shown above is an example of how you can extend the metadata for specific content types.
-
-## Customization
-
-### Site Configuration
-
-Modify `src/config/directory.config.ts` to customize site-wide settings:
-
+**Site settings** in `src/config/directory.config.ts`:
 ```typescript
-export const directoryConfig: DirectoryConfig = {
+export const directoryConfig = {
   name: 'Your Site Name',
   description: 'Your site description',
-  itemsPerPage: 9,
-  features: {
-    audio: true,
-    images: true,
-    tags: true,
-    search: true,
-    pagination: true,
-  },
-  theme: {
-    fontHeading: 'Your_Heading_Font',
-    fontBody: 'Your_Body_Font',
-  },
-};
+  // ...
+}
 ```
 
-### Styling
+**Content types** in `src/config/content.config.ts`:
+```typescript
+export const contentConfig = {
+  types: {
+    articles: { /* config */ },
+    stories: { /* config */ },
+    // Add your own types
+  }
+}
+```
 
-- Global styles: `src/app/globals.css`
-- Tailwind config: `tailwind.config.ts`
-- Component styles: Individual component files using Tailwind classes
+See [Configuration docs](docs/configuration.md) for full reference.
 
-### Components
+## Documentation
 
-- Create new components in `src/components`
-- Modify existing components to match your needs
-- Use shadcn/ui components for consistent styling
+Detailed documentation is available in the [docs/](docs/) folder:
+
+- [Getting Started](docs/getting-started.md) - Installation and first steps
+- [Content System](docs/content-system.md) - Adding and managing content
+- [Configuration](docs/configuration.md) - Site and content config reference
+- [SEO](docs/seo.md) - Sitemap, RSS, metadata, and structured data
+- [Dark Mode](docs/dark-mode.md) - Theming and customization
+- [Components](docs/components.md) - Available UI components
+- [Deployment](docs/deployment.md) - Deploying to Vercel and other platforms
 
 ## Contributing
 
