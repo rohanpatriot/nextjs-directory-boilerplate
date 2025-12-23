@@ -1,0 +1,82 @@
+name: Question/Help
+description: Ask a question or request help
+title: "[Question]: "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Need help or have a question? We're here to assist! Please provide as much detail as possible.
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: What would you like to know?
+      placeholder: Ask your question here...
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: What are you trying to accomplish?
+      placeholder: I'm trying to...
+    validations:
+      required: true
+
+  - type: textarea
+    id: attempted
+    attributes:
+      label: What Have You Tried?
+      description: Have you already attempted any solutions?
+      placeholder: I've tried...
+    validations:
+      required: false
+
+  - type: textarea
+    id: code
+    attributes:
+      label: Relevant Code
+      description: If applicable, please share relevant code snippets
+      placeholder: |
+        ```typescript
+        // Your code here
+        ```
+      render: markdown
+    validations:
+      required: false
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Please provide information about your environment if relevant
+      placeholder: |
+        - OS: [e.g. macOS, Windows, Linux]
+        - Node.js version: [e.g. 18.17.0]
+        - Next.js version: [e.g. 14.0.0]
+      render: markdown
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Information
+      description: Any other information that might help us answer your question
+      placeholder: Any additional context...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      description: Please verify the following before submitting
+      options:
+        - label: I have searched existing issues and discussions for similar questions
+          required: true
+        - label: I have checked the project documentation
+          required: false
