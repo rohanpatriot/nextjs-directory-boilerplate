@@ -9,9 +9,9 @@ content/
   articles/          # Blog articles
     my-post.mdx
     another-post.mdx
-  stories/           # Stories (or any content type)
-    story-one.mdx
-    story-two.mdx
+  projects/          # Project showcase (or any content type)
+    project-one.mdx
+    project-two.mdx
   [custom-type]/     # Add your own types
 ```
 
@@ -60,8 +60,10 @@ const hello = 'world';
 | `tags` | string[] | Array of tags for categorization |
 | `image` | string | Featured image path (relative to /public) |
 | `topic` | string | Content topic or category |
-| `audioUrl` | string | URL to audio file (for audio-enabled types) |
-| `virtue` | string | Virtue/lesson field (for stories) |
+| `technologies` | string[] | Array of technologies used (for projects) |
+| `github` | string | GitHub repository URL (for projects) |
+| `demo` | string | Live demo URL (for projects) |
+| `featured` | boolean | Featured/highlight flag (for projects) |
 
 ### Type-Specific Fields
 

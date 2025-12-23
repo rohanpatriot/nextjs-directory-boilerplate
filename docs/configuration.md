@@ -107,7 +107,7 @@ export const contentConfig: ContentConfig = {
   // Content type definitions
   types: {
     articles: { /* ... */ },
-    stories: { /* ... */ },
+    projects: { /* ... */ },
   },
 };
 ```
@@ -138,12 +138,11 @@ Each content type has these options:
 
   // Feature toggles for this type
   features: {
-    audio: false,
-    images: true,
-    tags: true,
-    search: true,
-    pagination: true,
-    virtueCard: false,
+    audio: false,        // Enable audio player
+    images: true,        // Enable featured images
+    tags: true,          // Enable tag filtering
+    search: true,        // Enable search
+    pagination: true,    // Enable pagination
   },
 
   // Default sort settings
@@ -163,12 +162,11 @@ Each content type has these options:
 
   // Detail page display options
   detail: {
-    showImage: true,
-    showAudio: false,
-    showTags: true,
-    showAuthor: true,
-    showDate: true,
-    showVirtue: false,
+    showImage: true,     // Show featured image
+    showAudio: false,    // Show audio player (if audioUrl present)
+    showTags: true,      // Show tags
+    showAuthor: true,    // Show author
+    showDate: true,      // Show publish date
   },
 }
 ```

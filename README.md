@@ -11,7 +11,7 @@ A modern, customizable directory/blog template built with Next.js 15, MDX, and s
 - 🔍 **Search & Filtering** - Built-in content search and tag filtering
 - 📱 **Responsive Layout** - Mobile-first design approach
 - 🖼️ **Image Optimization** - Automatic image optimization with Next.js
-- 🎵 **Audio Support** - Optional audio player for podcasts, stories, etc.
+- 💼 **Portfolio Ready** - Perfect for showcasing projects and work
 - 🏷️ **Tag System** - Organize content with tags and categories
 - ⚡ **Fast Page Loads** - Static site generation for optimal performance
 - 🌙 **Dark Mode** - System preference detection with manual toggle
@@ -50,7 +50,7 @@ Open [http://localhost:3000](http://localhost:3000) to see your site.
 ```
 ├── content/                  # MDX content files
 │   ├── articles/            # Blog articles
-│   └── stories/             # Story content
+│   └── projects/            # Project showcase
 ├── src/
 │   ├── app/                 # Next.js App Router
 │   │   ├── [contentType]/   # Dynamic content routes
@@ -71,19 +71,38 @@ Open [http://localhost:3000](http://localhost:3000) to see your site.
 
 ## Content
 
-Add MDX files to `content/articles/` or `content/stories/`:
+Add MDX files to `content/articles/` or `content/projects/`:
 
+**Articles:**
 ```mdx
 ---
-title: 'My Post Title'
-summary: 'Brief description'
-date: '2024-01-15'
+title: 'Understanding React Server Components'
+summary: 'A guide to RSC in Next.js 15'
+date: '2024-12-01'
 author: 'Your Name'
-tags: ['tag1', 'tag2']
-image: '/images/post-image.jpg'
+tags: ['nextjs', 'react', 'tutorial']
+image: '/example1.png'
 ---
 
-Your content here...
+Your content here with full Markdown and MDX support...
+```
+
+**Projects:**
+```mdx
+---
+title: 'Next.js E-Commerce Platform'
+summary: 'Full-stack e-commerce with Next.js 15'
+date: '2024-12-15'
+author: 'Your Name'
+tags: ['nextjs', 'ecommerce', 'typescript']
+image: '/example1.png'
+technologies: ['Next.js 15', 'React 19', 'TypeScript']
+github: 'https://github.com/username/repo'
+demo: 'https://demo.vercel.app'
+featured: true
+---
+
+Detailed project description...
 ```
 
 See [Content System docs](docs/content-system.md) for all frontmatter fields and adding custom content types.
@@ -104,7 +123,7 @@ export const directoryConfig = {
 export const contentConfig = {
   types: {
     articles: { /* config */ },
-    stories: { /* config */ },
+    projects: { /* config */ },
     // Add your own types
   }
 }

@@ -1,30 +1,270 @@
 ---
-title: 'Example Content Item 1'
-topic: 'Example Topic'
+title: 'Understanding React Server Components in Next.js 15'
+summary: 'A comprehensive guide to React Server Components, how they work, and when to use them in your Next.js applications.'
+date: '2024-12-01'
+author: 'Alex Thompson'
+tags: ['nextjs', 'react', 'server-components', 'tutorial']
 image: '/example1.png'
-summary: "This is an example content item showing the basic structure of the directory."
-tags: ['example', 'guide']
-date: '2024-01-01'
-author: 'John Doe'
 ---
 
-This is an example content item that demonstrates the basic structure of content in this directory boilerplate.
+React Server Components (RSC) represent a paradigm shift in how we build React applications. Introduced in Next.js 13 and refined in Next.js 15, they fundamentally change the server-client relationship in modern web apps.
 
-## Features
+## What Are Server Components?
 
-- MDX Support
-- Frontmatter metadata
-- Image handling
-- Responsive layout
-- SEO optimization
+Server Components are React components that run exclusively on the server. Unlike traditional React components that execute in the browser, Server Components:
 
-You can customize this template by:
+- Execute on the server during the request
+- Have direct access to backend resources (databases, file systems, APIs)
+- Don't ship JavaScript to the client
+- Can't use browser-specific APIs or hooks like `useState` or `useEffect`
 
-1. Modifying the directory.config.ts file
-2. Adding your own content files
-3. Customizing the components
-4. Updating the styling
+## The Traditional Approach
 
-## Usage
+Before Server Components, fetching data in React typically looked like this:
 
-Simply replace this content with your own MDX files and update the configuration to match your needs.
+```jsx
+'use client'; // This is a Client Component
+
+import { useState, useEffect } from 'react';
+
+export default function BlogPosts() {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/posts')
+      .then(res => res.json())
+      .then(data => {
+        setPosts(data);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+
+  return (
+    <div>
+      {posts.map(post => (
+        <article key={post.id}>
+          <h2>{post.title}</h2>
+          <p>{post.summary}</p>
+        </article>
+      ))}
+    </div>
+  );
+}
+```
+
+**Problems with this approach:**
+- Waterfall requests (HTML loads, then JavaScript, then data)
+- Spinner/loading states required
+- Larger JavaScript bundle
+- No SEO for dynamic content
+
+## The Server Component Way
+
+According to the [Next.js App Router documentation](https://nextjs.org/docs/app/building-your-application/rendering/server-components), Server Components simplify this:
+
+```jsx
+// This is a Server Component (default in App Router)
+
+async function getPosts() {
+  const posts = await db.query('SELECT * FROM posts');
+  return posts;
+}
+
+export default async function BlogPosts() {
+  const posts = await getPosts(); // Direct database access!
+
+  return (
+    <div>
+      {posts.map(post => (
+        <article key={post.id}>
+          <h2>{post.title}</h2>
+          <p>{post.summary}</p>
+        </article>
+      ))}
+    </div>
+  );
+}
+```
+
+**Benefits:**
+- ✅ No loading states needed
+- ✅ Direct database access (no API route)
+- ✅ Zero JavaScript shipped for this component
+- ✅ Perfect SEO—fully rendered HTML
+- ✅ Automatic code splitting
+
+## When to Use Client Components
+
+You still need Client Components (`'use client'`) when you need:
+
+- **Interactivity**: Event handlers, state, effects
+- **Browser APIs**: `localStorage`, `window`, etc.
+- **Hooks**: `useState`, `useEffect`, `useContext`
+- **Third-party libraries** that use browser APIs
+
+```jsx
+'use client';
+
+import { useState } from 'react';
+
+export function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <button onClick={() => setCount(count + 1)}>
+      Count: {count}
+    </button>
+  );
+}
+```
+
+## Composing Server and Client Components
+
+The real power comes from combining them:
+
+```jsx
+// app/page.tsx (Server Component)
+import { Suspense } from 'react';
+import { LikeButton } from './LikeButton'; // Client Component
+
+async function getPosts() {
+  const posts = await db.query('SELECT * FROM posts');
+  return posts;
+}
+
+export default async function Page() {
+  const posts = await getPosts();
+
+  return (
+    <div>
+      {posts.map(post => (
+        <article key={post.id}>
+          <h2>{post.title}</h2>
+          <p>{post.summary}</p>
+          {/* Client Component for interactivity */}
+          <LikeButton postId={post.id} />
+        </article>
+      ))}
+    </div>
+  );
+}
+```
+
+## Best Practices
+
+### 1. Keep Client Components Small
+Move `'use client'` as deep as possible in your component tree. Instead of making an entire page a Client Component, isolate interactivity:
+
+```jsx
+// ❌ Avoid: Entire component is client-side
+'use client';
+
+export function BlogPost({ post }) {
+  const [liked, setLiked] = useState(false);
+
+  return (
+    <article>
+      <h1>{post.title}</h1>
+      <p>{post.content}</p>
+      <button onClick={() => setLiked(!liked)}>
+        {liked ? '❤️' : '🤍'} Like
+      </button>
+    </article>
+  );
+}
+
+// ✅ Better: Only button is client-side
+export function BlogPost({ post }) {
+  return (
+    <article>
+      <h1>{post.title}</h1>
+      <p>{post.content}</p>
+      <LikeButton /> {/* Client Component */}
+    </article>
+  );
+}
+```
+
+### 2. Use Loading States with Suspense
+Following [Next.js loading UI patterns](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming):
+
+```jsx
+import { Suspense } from 'react';
+
+export default function Page() {
+  return (
+    <div>
+      <h1>My Blog</h1>
+      <Suspense fallback={<PostsSkeleton />}>
+        <BlogPosts />
+      </Suspense>
+    </div>
+  );
+}
+```
+
+### 3. Leverage Server Actions for Mutations
+Server Actions let you mutate data without API routes:
+
+```jsx
+'use server';
+
+export async function createPost(formData: FormData) {
+  const title = formData.get('title');
+  await db.insert('posts', { title });
+  revalidatePath('/posts');
+}
+```
+
+## Performance Implications
+
+Server Components offer significant performance benefits:
+
+- **Smaller bundles**: Libraries used only on server don't ship to client
+- **Faster initial load**: No client-side data fetching waterfall
+- **Better SEO**: Fully rendered HTML from the start
+- **Reduced hydration**: Less JavaScript to hydrate
+
+According to [Vercel's analysis](https://vercel.com/blog/understanding-react-server-components), moving to Server Components can reduce client JavaScript by 50-90% for content-heavy apps.
+
+## Common Pitfalls
+
+### 1. Trying to Pass Functions to Client Components
+```jsx
+// ❌ This won't work
+<ClientComponent onClick={serverFunction} />
+
+// ✅ Use Server Actions instead
+<ClientComponent action={serverAction} />
+```
+
+### 2. Importing Server-Only Code in Client Components
+```jsx
+'use client';
+import { db } from '@/lib/db'; // ❌ Error!
+```
+
+Use `server-only` package to prevent accidental imports:
+```bash
+npm install server-only
+```
+
+```jsx
+import 'server-only';
+export { db };
+```
+
+## Conclusion
+
+React Server Components are the future of React development. They simplify data fetching, improve performance, and provide better SEO out of the box.
+
+Start by making your components Server Components by default, and only add `'use client'` when you need interactivity. This "server-first" mindset leads to faster, more maintainable applications.
+
+## Further Reading
+
+- [Next.js Server Components Documentation](https://nextjs.org/docs/app/building-your-application/rendering/server-components)
+- [React Server Components RFC](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md)
+- [Vercel's Guide to RSC](https://vercel.com/blog/understanding-react-server-components)

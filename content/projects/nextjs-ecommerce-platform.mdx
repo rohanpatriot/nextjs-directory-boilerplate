@@ -1,0 +1,83 @@
+---
+title: 'Next.js E-Commerce Platform'
+summary: 'A full-stack e-commerce platform built with Next.js 15, featuring server components, optimistic UI updates, and Stripe integration.'
+date: '2024-12-15'
+author: 'Sarah Chen'
+tags: ['nextjs', 'react', 'ecommerce', 'typescript']
+image: '/example1.png'
+technologies: ['Next.js 15', 'React 19', 'TypeScript', 'Tailwind CSS', 'Stripe', 'PostgreSQL']
+github: 'https://github.com/example/nextjs-ecommerce'
+demo: 'https://ecommerce-demo.vercel.app'
+featured: true
+---
+
+## Overview
+
+A modern, performant e-commerce platform leveraging the latest Next.js 15 features including Server Components, Server Actions, and the App Router. This project demonstrates best practices for building production-ready applications with excellent SEO and Core Web Vitals scores.
+
+## Key Features
+
+### Server-Side Architecture
+- **React Server Components** for optimal performance
+- **Server Actions** for mutations without client-side JavaScript
+- **Streaming SSR** with Suspense boundaries for instant page loads
+- **Partial Prerendering** for hybrid static/dynamic pages
+
+### E-Commerce Functionality
+- Product catalog with advanced filtering and search
+- Shopping cart with optimistic UI updates
+- Secure checkout flow with Stripe integration
+- Order management and tracking
+- Customer reviews and ratings
+
+### Performance Optimizations
+- Image optimization using `next/image` with priority loading
+- Route prefetching for instant navigation
+- Incremental Static Regeneration (ISR) for product pages
+- Edge runtime for global low-latency
+
+## Technical Highlights
+
+### Metadata API for SEO
+```typescript
+export async function generateMetadata({ params }): Promise<Metadata> {
+  const product = await getProduct(params.id);
+
+  return {
+    title: product.name,
+    description: product.description,
+    openGraph: {
+      images: [product.image],
+    },
+  };
+}
+```
+
+Following [Next.js metadata best practices](https://nextjs.org/docs/app/api-reference/functions/generate-metadata), each product page generates dynamic SEO metadata for optimal search visibility.
+
+### Image Optimization
+All product images use the Next.js Image component with proper sizing and the `priority` attribute for above-the-fold content, ensuring excellent Core Web Vitals scores.
+
+### Type Safety
+Full TypeScript implementation with strict mode enabled, providing compile-time safety and excellent developer experience.
+
+## Challenges & Solutions
+
+**Challenge**: Maintaining cart state across server/client boundary
+**Solution**: Implemented using Server Actions with optimistic updates, providing instant feedback while ensuring data consistency.
+
+**Challenge**: SEO for dynamic product pages
+**Solution**: Leveraged `generateMetadata` and `generateStaticParams` for optimal crawlability and social sharing.
+
+## Results
+
+- **95+ Lighthouse score** across all metrics
+- **Sub-200ms** initial load time on Vercel Edge
+- **Zero layout shift** (CLS: 0)
+- **Full SEO coverage** with dynamic metadata
+
+## Lessons Learned
+
+Building with Next.js 15's App Router required rethinking traditional React patterns. Server Components dramatically simplified data fetching and improved performance, but required careful consideration of the client/server boundary.
+
+The new Server Actions eliminated the need for API routes in many cases, reducing code complexity and improving type safety across the stack.

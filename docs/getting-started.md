@@ -79,8 +79,8 @@ Replace the example content in the `content/` folder:
 content/
   articles/
     my-first-post.mdx
-  stories/
-    my-story.mdx
+  projects/
+    my-project.mdx
 ```
 
 ### 3. Customize Styling

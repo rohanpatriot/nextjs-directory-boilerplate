@@ -1,35 +1,371 @@
 ---
-title: 'Example Content Item 2'
-topic: 'Another Topic'
+title: 'Optimizing Images in Next.js: A Complete Guide'
+summary: 'Learn how to leverage Next.js Image optimization to improve Core Web Vitals, reduce bandwidth, and deliver faster experiences to your users.'
+date: '2024-11-15'
+author: 'Jordan Martinez'
+tags: ['nextjs', 'performance', 'optimization', 'web-vitals']
 image: '/example2.png'
-summary: "Another example showing how to structure content with different metadata."
-tags: ['example', 'tutorial']
-date: '2024-01-02'
-author: 'Jane Smith'
 ---
 
-This is another example content item showing how to use different metadata fields and structure your content.
+Images typically account for 50% or more of a webpage's total size. Optimizing them correctly is crucial for performance, especially Core Web Vitals metrics that directly impact SEO rankings.
 
-## Metadata Options
+Next.js provides powerful built-in image optimization through the `next/image` component. Let's explore how to use it effectively.
 
-You can include various metadata in the frontmatter:
+## The Problem with Traditional Images
 
-- title (required)
-- topic
-- image
-- summary
-- tags
-- date
-- author
-- custom fields
+Using standard HTML `<img>` tags has several issues:
 
-## Content Structure
+```html
+<!-- ❌ Traditional approach -->
+<img src="/hero-image.jpg" alt="Hero" />
+```
 
-The content itself can include:
+**Problems:**
+- No automatic resizing for different screen sizes
+- No format optimization (stuck with JPEG/PNG)
+- No lazy loading by default
+- Potential Cumulative Layout Shift (CLS)
+- No WebP/AVIF conversion
+- Full-size images downloaded even on mobile
 
-1. Markdown formatting
-2. Code blocks
-3. Images
-4. Custom components
+## The Next.js Image Component
 
-Feel free to modify this structure based on your specific needs.
+The `next/image` component solves these issues:
+
+```jsx
+import Image from 'next/image';
+
+export function Hero() {
+  return (
+    <Image
+      src="/hero-image.jpg"
+      alt="Hero"
+      width={1200}
+      height={600}
+      priority
+    />
+  );
+}
+```
+
+According to the [Next.js Image documentation](https://nextjs.org/docs/app/getting-started/images), this automatically provides:
+
+- **Automatic format optimization**: Converts to WebP/AVIF when supported
+- **Responsive images**: Generates multiple sizes automatically
+- **Lazy loading**: Images load as user scrolls
+- **Blur placeholders**: Smooth loading experience
+- **Layout shift prevention**: Reserved space prevents CLS
+
+## Essential Props
+
+### 1. Width and Height
+
+**Always specify dimensions** to prevent layout shift:
+
+```jsx
+<Image
+  src="/photo.jpg"
+  width={800}
+  height={600}
+  alt="Photo description"
+/>
+```
+
+For responsive images that fill their container:
+
+```jsx
+<div className="relative w-full h-64">
+  <Image
+    src="/photo.jpg"
+    fill
+    className="object-cover"
+    alt="Photo description"
+  />
+</div>
+```
+
+### 2. Priority
+
+Use `priority` for above-the-fold images to prevent lazy loading:
+
+```jsx
+<Image
+  src="/hero.jpg"
+  width={1200}
+  height={600}
+  priority // Loads immediately, not lazy
+  alt="Hero image"
+/>
+```
+
+Following [Next.js performance best practices](https://nextjs.org/docs/app/building-your-application/optimizing/images), this ensures your Largest Contentful Paint (LCP) image loads quickly.
+
+### 3. Quality
+
+Control JPEG/WebP quality (default is 75):
+
+```jsx
+<Image
+  src="/photo.jpg"
+  width={800}
+  height={600}
+  quality={90} // Higher quality, larger file
+  alt="High quality photo"
+/>
+```
+
+**Best practices:**
+- Hero images: 85-90
+- Content images: 75-80
+- Thumbnails: 60-75
+
+### 4. Sizes
+
+Tell the browser what size the image will be at different breakpoints:
+
+```jsx
+<Image
+  src="/responsive.jpg"
+  fill
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+  alt="Responsive image"
+/>
+```
+
+This helps the browser choose the optimal image size to download.
+
+## Remote Images
+
+For images from external sources, configure allowed domains:
+
+```js
+// next.config.js
+module.exports = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.example.com',
+        pathname: '/images/**',
+      },
+    ],
+  },
+};
+```
+
+Then use them:
+
+```jsx
+<Image
+  src="https://images.unsplash.com/photo-1234567890"
+  width={800}
+  height={600}
+  alt="External image"
+/>
+```
+
+## Placeholder Blur Effect
+
+Create a smooth loading experience with blur placeholders:
+
+### Option 1: Automatic (for static imports)
+
+```jsx
+import heroImage from '@/public/hero.jpg';
+
+<Image
+  src={heroImage}
+  alt="Hero"
+  placeholder="blur" // Automatic blur from image
+/>
+```
+
+### Option 2: Custom blur data URL
+
+For remote images, generate a blur placeholder:
+
+```jsx
+<Image
+  src="https://example.com/image.jpg"
+  width={800}
+  height={600}
+  placeholder="blur"
+  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRg..." // Base64 blur
+  alt="Image with custom blur"
+/>
+```
+
+Use tools like [plaiceholder](https://plaiceholder.co/) to generate blur data URLs.
+
+## Performance Optimization Strategies
+
+### 1. Use Appropriate Formats
+
+```js
+// next.config.js
+module.exports = {
+  images: {
+    formats: ['image/avif', 'image/webp'],
+  },
+};
+```
+
+**AVIF** offers 20-50% better compression than WebP but slower encoding. WebP is a safe default.
+
+### 2. Lazy Load Off-Screen Images
+
+Images below the fold are automatically lazy-loaded:
+
+```jsx
+{/* Automatically lazy loaded */}
+<Image
+  src="/below-fold.jpg"
+  width={800}
+  height={600}
+  alt="Below fold image"
+/>
+```
+
+### 3. Optimize with CDNs
+
+For production, use a custom loader with a CDN:
+
+```js
+// next.config.js
+module.exports = {
+  images: {
+    loader: 'cloudinary',
+    path: 'https://res.cloudinary.com/demo/image/upload/',
+  },
+};
+```
+
+### 4. Responsive Image Sizes
+
+Generate optimal sizes for different devices:
+
+```js
+// next.config.js
+module.exports = {
+  images: {
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+  },
+};
+```
+
+## Real-World Example
+
+Here's a complete example for a blog post card:
+
+```jsx
+import Image from 'next/image';
+import Link from 'next/link';
+
+export function BlogCard({ post }) {
+  return (
+    <Link href={`/blog/${post.slug}`}>
+      <article className="group overflow-hidden rounded-lg border">
+        {/* Image container with aspect ratio */}
+        <div className="relative aspect-[16/9] overflow-hidden">
+          <Image
+            src={post.image}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover transition-transform group-hover:scale-105"
+            alt={post.title}
+          />
+        </div>
+
+        <div className="p-4">
+          <h3 className="text-xl font-bold">{post.title}</h3>
+          <p className="text-gray-600">{post.summary}</p>
+        </div>
+      </article>
+    </Link>
+  );
+}
+```
+
+## Measuring Impact
+
+Use Chrome DevTools and Lighthouse to measure:
+
+- **Largest Contentful Paint (LCP)**: Should be < 2.5s
+- **Cumulative Layout Shift (CLS)**: Should be < 0.1
+- **Image format**: Verify WebP/AVIF delivery
+- **Image size**: Check responsive sizes are served
+
+## Common Mistakes
+
+### 1. Forgetting Dimensions
+```jsx
+// ❌ Missing dimensions causes layout shift
+<Image src="/photo.jpg" alt="Photo" />
+
+// ✅ Specify dimensions
+<Image src="/photo.jpg" width={800} height={600} alt="Photo" />
+```
+
+### 2. Not Using Priority for Hero Images
+```jsx
+// ❌ Hero image will lazy load
+<Image src="/hero.jpg" width={1200} height={600} alt="Hero" />
+
+// ✅ Prioritize above-fold images
+<Image src="/hero.jpg" width={1200} height={600} priority alt="Hero" />
+```
+
+### 3. Incorrect Sizes Prop
+```jsx
+// ❌ Browser downloads larger images than needed
+<Image src="/photo.jpg" fill alt="Photo" />
+
+// ✅ Tell browser expected sizes
+<Image
+  src="/photo.jpg"
+  fill
+  sizes="(max-width: 768px) 100vw, 50vw"
+  alt="Photo"
+/>
+```
+
+## Advanced: Custom Loader
+
+For specialized image processing:
+
+```js
+const myLoader = ({ src, width, quality }) => {
+  return `https://example.com/${src}?w=${width}&q=${quality || 75}`;
+};
+
+<Image
+  loader={myLoader}
+  src="photo.jpg"
+  width={800}
+  height={600}
+  alt="Custom loader"
+/>
+```
+
+## Conclusion
+
+Next.js Image optimization is essential for modern web performance. By following these best practices:
+
+- Always specify dimensions or use `fill`
+- Use `priority` for above-the-fold images
+- Configure appropriate `sizes` for responsive images
+- Leverage automatic WebP/AVIF conversion
+- Measure with Lighthouse and Core Web Vitals
+
+You'll deliver fast, visually stable experiences that rank well in search engines and delight users.
+
+## Resources
+
+- [Next.js Image Component Documentation](https://nextjs.org/docs/app/getting-started/images)
+- [Web.dev Image Optimization Guide](https://web.dev/fast/#optimize-your-images)
+- [Core Web Vitals](https://web.dev/vitals/)

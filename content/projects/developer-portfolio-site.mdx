@@ -1,0 +1,151 @@
+---
+title: 'Developer Portfolio & Blog'
+summary: 'A modern portfolio website with MDX blog, project showcase, and contact form. Features dark mode, animations, and optimal SEO.'
+date: '2024-10-05'
+author: 'Alex Johnson'
+tags: ['nextjs', 'portfolio', 'mdx', 'framer-motion']
+image: '/example1.png'
+technologies: ['Next.js 15', 'MDX', 'Tailwind CSS', 'Framer Motion', 'shadcn/ui']
+github: 'https://github.com/example/portfolio'
+demo: 'https://portfolio-demo.vercel.app'
+---
+
+## Overview
+
+A personal portfolio website showcasing projects, blog posts, and professional experience. Built with Next.js 15 and MDX for content management, featuring smooth animations and excellent SEO.
+
+## Features
+
+### Content Management
+- **MDX blog** with syntax highlighting
+- **Project showcase** with filterable categories
+- **Resume/CV** section with downloadable PDF
+- **About page** with skills and experience timeline
+
+### Design & UX
+- **Dark mode** with system preference detection
+- **Smooth animations** using Framer Motion
+- **Responsive layout** mobile-first approach
+- **Accessibility** WCAG 2.1 AA compliant
+- **Typography** system with variable fonts
+
+### SEO & Performance
+- **Perfect Lighthouse scores** (100/100/100/100)
+- **Structured data** with JSON-LD for rich results
+- **Dynamic sitemap** and RSS feed
+- **Open Graph** images for social sharing
+- **Meta tags** optimized for each page
+
+## Technical Deep Dive
+
+### MDX Integration
+
+Following the [official Next.js MDX guide](https://nextjs.org/docs/app/guides/mdx), content is authored in MDX with custom components:
+
+```mdx
+---
+title: 'Building with Next.js 15'
+date: '2024-10-01'
+tags: ['nextjs', 'react']
+---
+
+# Building with Next.js 15
+
+<CustomComponent />
+
+Your content here...
+```
+
+### Component Architecture
+
+```
+src/
+  components/
+    ui/           # shadcn/ui primitives
+    layout/       # Header, Footer, Navigation
+    blog/         # BlogCard, BlogPost, CodeBlock
+    projects/     # ProjectCard, ProjectGrid
+    animations/   # Reusable Framer Motion variants
+```
+
+### Image Optimization
+
+All images use the Next.js Image component following [Next.js 15 image best practices](https://nextjs.org/docs/app/getting-started/images):
+
+```tsx
+<Image
+  src="/project-screenshot.png"
+  alt="Project screenshot"
+  width={800}
+  height={600}
+  priority // For above-fold images
+  className="rounded-lg"
+/>
+```
+
+### Metadata Generation
+
+Dynamic metadata for blog posts using `generateMetadata`:
+
+```typescript
+export async function generateMetadata({ params }): Promise<Metadata> {
+  const post = await getPost(params.slug);
+
+  return {
+    title: post.title,
+    description: post.summary,
+    authors: [{ name: post.author }],
+    openGraph: {
+      title: post.title,
+      description: post.summary,
+      type: 'article',
+      publishedTime: post.date,
+      images: [post.image],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.summary,
+      images: [post.image],
+    },
+  };
+}
+```
+
+This follows [Next.js metadata API best practices](https://nextjs.org/docs/app/api-reference/functions/generate-metadata) for optimal SEO.
+
+## Animation Details
+
+Subtle animations enhance UX without overwhelming:
+- Page transitions with shared layout animations
+- Scroll-triggered reveals for project cards
+- Hover effects on interactive elements
+- Loading states with skeleton screens
+
+## Deployment
+
+Deployed on Vercel with:
+- **Automatic deployments** from GitHub
+- **Preview deployments** for pull requests
+- **Analytics** for visitor tracking
+- **Speed Insights** for Core Web Vitals monitoring
+
+## Results
+
+- **100 Lighthouse score** across all categories
+- **1-second load time** on 4G
+- **Zero accessibility violations** (axe DevTools)
+- **First page of Google** for target keywords within 2 months
+
+## What I Learned
+
+Building with Next.js 15's App Router and Server Components fundamentally changed how I think about React applications. The ability to fetch data directly in components without client-side JavaScript dramatically simplifies architecture.
+
+MDX provides an excellent writing experience while maintaining full control over component rendering. The combination of static generation with dynamic metadata creates the perfect balance for a content-heavy site.
+
+## Resources
+
+- [Next.js 15 Documentation](https://nextjs.org/docs)
+- [MDX Documentation](https://mdxjs.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Framer Motion](https://www.framer.com/motion/)

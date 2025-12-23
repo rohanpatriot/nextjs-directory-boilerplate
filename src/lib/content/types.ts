@@ -10,9 +10,14 @@ export interface BaseContentMeta {
   date?: string;
   author?: string;
   tags?: string[];
-  audioUrl?: string;
-  virtue?: string;
   topic?: string;
+  // Optional fields for specific content types
+  audioUrl?: string; // For audio-enabled content
+  virtue?: string; // For moral/educational content
+  technologies?: string[]; // For projects
+  github?: string; // For projects
+  demo?: string; // For projects
+  featured?: boolean; // For highlighting content
   [key: string]: unknown;
 }
 

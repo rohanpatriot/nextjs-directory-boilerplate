@@ -1,0 +1,126 @@
+---
+title: 'AI Content Generator SaaS'
+summary: 'A SaaS application that generates blog posts, social media content, and marketing copy using OpenAI GPT-4, built with Next.js and streaming responses.'
+date: '2024-11-20'
+author: 'Michael Rodriguez'
+tags: ['nextjs', 'ai', 'saas', 'openai']
+image: '/example2.png'
+technologies: ['Next.js 15', 'OpenAI API', 'Prisma', 'NextAuth.js', 'tRPC', 'Vercel AI SDK']
+github: 'https://github.com/example/ai-content-generator'
+demo: 'https://ai-generator-demo.vercel.app'
+featured: true
+---
+
+## Overview
+
+An AI-powered content generation platform that helps marketers and content creators produce high-quality written content. Built with Next.js 15 and the Vercel AI SDK, featuring real-time streaming responses and a modern, intuitive interface.
+
+## Key Features
+
+### AI Integration
+- **Streaming responses** using the Vercel AI SDK for real-time output
+- **Multiple content types**: blog posts, social media, emails, ad copy
+- **Template system** for consistent brand voice
+- **Content refinement** with iterative improvements
+- **Tone and style controls** for customization
+
+### SaaS Infrastructure
+- **Authentication** with NextAuth.js (Google, GitHub, email)
+- **Usage-based billing** with Stripe subscriptions
+- **Rate limiting** and quota management
+- **Content history** and saved templates
+- **Team collaboration** features
+
+### User Experience
+- Real-time typing indicators during generation
+- Copy-to-clipboard functionality
+- Export to Markdown, HTML, or plain text
+- Dark mode support with `next-themes`
+- Responsive design for mobile and desktop
+
+## Technical Implementation
+
+### Streaming AI Responses
+
+```typescript
+import { OpenAIStream, StreamingTextResponse } from 'ai';
+import { Configuration, OpenAIApi } from 'openai-edge';
+
+export async function POST(req: Request) {
+  const { prompt } = await req.json();
+
+  const response = await openai.createChatCompletion({
+    model: 'gpt-4',
+    stream: true,
+    messages: [{ role: 'user', content: prompt }],
+  });
+
+  const stream = OpenAIStream(response);
+  return new StreamingTextResponse(stream);
+}
+```
+
+Using the [Vercel AI SDK](https://sdk.vercel.ai/docs) for seamless streaming integration with React Server Components.
+
+### Database Schema
+
+Implemented with Prisma ORM for type-safe database access:
+- User management and authentication
+- Content generation history
+- Template storage and sharing
+- Usage tracking and analytics
+
+### Rate Limiting
+
+Edge middleware for API protection:
+```typescript
+export async function middleware(request: Request) {
+  const ip = request.headers.get('x-forwarded-for');
+  const { success } = await ratelimit.limit(ip);
+
+  if (!success) {
+    return new Response('Rate limit exceeded', { status: 429 });
+  }
+}
+```
+
+## Performance & Optimization
+
+- **Edge runtime** for global low-latency API responses
+- **Incremental Static Regeneration** for landing pages
+- **Route handlers** for efficient API endpoints
+- **Optimistic UI updates** for instant feedback
+- **Lazy loading** for heavy components
+
+Following [Next.js 15 performance best practices](https://nextjs.org/docs/app/building-your-application/optimizing), the application achieves sub-second response times worldwide.
+
+## Monetization
+
+Three-tier subscription model:
+- **Free**: 10 generations/month
+- **Pro**: Unlimited generations, priority processing
+- **Team**: Multi-user workspaces, API access
+
+Stripe integration handles subscriptions, webhooks, and usage tracking.
+
+## Challenges
+
+**Challenge**: Managing streaming state across server/client
+**Solution**: Leveraged the Vercel AI SDK's `useChat` hook for seamless stream handling.
+
+**Challenge**: Preventing API abuse
+**Solution**: Multi-layer rate limiting (IP-based, user-based, plan-based) with Redis.
+
+## Impact
+
+- **1,000+ users** in first month
+- **50,000+ content pieces** generated
+- **4.8/5 average rating** from users
+- **$15K MRR** within 3 months
+
+## Future Plans
+
+- Multi-language support
+- Image generation with DALL-E
+- SEO optimization suggestions
+- WordPress and CMS integrations
