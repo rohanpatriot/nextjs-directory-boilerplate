@@ -14,22 +14,53 @@ A modern, customizable directory/blog template built with Next.js 15, MDX, and s
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Frohanpatriot%2Fnextjs-directory-boilerplate&project-name=nextjs-directory-boilerplate&repository-name=nextjs-directory-boilerplate&skippable-integrations=1)
 
-## Features
+---
 
-- 📝 **MDX Support** - Write content using Markdown with JSX components
-- 🎨 **Customizable Design** - Built with Tailwind CSS and shadcn/ui
-- 🔍 **Search & Filtering** - Built-in content search and tag filtering
-- 📱 **Responsive Layout** - Mobile-first design approach
-- 🖼️ **Image Optimization** - Automatic image optimization with Next.js
-- 🎵 **Audio Support** - Optional audio player for podcasts, stories, etc.
-- 🏷️ **Tag System** - Organize content with tags and categories
-- ⚡ **Fast Page Loads** - Static site generation for optimal performance
-- 🌙 **Dark Mode** - System preference detection with manual toggle
-- 🗺️ **SEO Infrastructure** - Auto-generated sitemap, RSS feed, and JSON-LD
-- 🔧 **Config-Driven** - Easy configuration through config files
-- 📖 **Multi-Content Types** - Support for different content categories
+## ✨ Key Features
 
-## Tech Stack
+<table>
+<tr>
+<td width="50%">
+
+### 🚀 **Modern Stack**
+Built on **Next.js 15** with React 19, TypeScript, and the latest web technologies for blazing-fast performance
+
+### 📝 **MDX-Powered Content**
+Write content in Markdown with full JSX support - embed interactive components directly in your content
+
+### 🎨 **Beautiful by Default**
+Gorgeous UI built with **shadcn/ui** and Tailwind CSS - customizable, accessible, and production-ready
+
+</td>
+<td width="50%">
+
+### ⚡ **Lightning Fast**
+Static site generation ensures optimal performance with instant page loads and perfect Lighthouse scores
+
+### 🔍 **Search & Discovery**
+Built-in content search, tag filtering, and smart categorization help users find what they need
+
+### 🌙 **Dark Mode Included**
+Automatic dark mode with system preference detection and manual toggle - no extra configuration needed
+
+</td>
+</tr>
+</table>
+
+### 🎯 **What Makes This Special?**
+
+- **📱 Mobile-First & Responsive** - Looks stunning on every device from phone to desktop
+- **🗺️ SEO Powerhouse** - Auto-generated sitemap, RSS feed, and JSON-LD structured data out of the box
+- **🖼️ Smart Image Handling** - Automatic image optimization powered by Next.js
+- **🎵 Multimedia Ready** - Optional audio player for podcasts, stories, and educational content
+- **🏷️ Flexible Tag System** - Organize content with tags and categories for easy navigation
+- **🔧 Config-Driven Setup** - Customize everything through simple configuration files
+- **📖 Multi-Content Support** - Handle different content types (articles, stories, etc.) with ease
+- **🚀 One-Click Deploy** - Deploy to Vercel in seconds with zero configuration
+
+---
+
+## 🛠️ Tech Stack
 
 - **Framework**: [Next.js 15](https://nextjs.org/) with React 19
 - **Package Manager**: [pnpm](https://pnpm.io/)
@@ -39,7 +70,7 @@ A modern, customizable directory/blog template built with Next.js 15, MDX, and s
 - **Theming**: [next-themes](https://github.com/pacocoursey/next-themes)
 - **Typography**: Google Fonts (Cormorant Garamond & Nunito)
 
-## Quick Start
+## 🚀 Quick Start
 
 ```bash
 # Clone the repository
@@ -55,7 +86,7 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) to see your site.
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 ├── content/                  # MDX content files
@@ -79,7 +110,7 @@ Open [http://localhost:3000](http://localhost:3000) to see your site.
 │       └── structured-data.tsx  # JSON-LD schemas
 ```
 
-## Content
+## ✍️ Content
 
 Add MDX files to `content/articles/` or `content/stories/`:
 
@@ -98,7 +129,7 @@ Your content here...
 
 See [Content System docs](docs/content-system.md) for all frontmatter fields and adding custom content types.
 
-## Configuration
+## ⚙️ Configuration
 
 **Site settings** in `src/config/directory.config.ts`:
 ```typescript
@@ -122,7 +153,7 @@ export const contentConfig = {
 
 See [Configuration docs](docs/configuration.md) for full reference.
 
-## Documentation
+## 📚 Documentation
 
 Detailed documentation is available in the [docs/](docs/) folder:
 
@@ -134,10 +165,10 @@ Detailed documentation is available in the [docs/](docs/) folder:
 - [Components](docs/components.md) - Available UI components
 - [Deployment](docs/deployment.md) - Deploying to Vercel and other platforms
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## License
+## 📄 License
 
 This project is released under the [MIT License](LICENSE).
