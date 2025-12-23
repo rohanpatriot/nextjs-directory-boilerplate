@@ -1,35 +1,73 @@
 ---
-title: 'Example Content Item 2'
-topic: 'Another Topic'
+title: 'Why We Switched from Microservices Back to a Monolith'
+topic: 'Architecture'
 image: '/example2.png'
-summary: "Another example showing how to structure content with different metadata."
-tags: ['example', 'tutorial']
-date: '2024-01-02'
-author: 'Jane Smith'
+summary: 'An honest retrospective on our journey from monolith to microservices and back again, and what we learned along the way.'
+tags: ['architecture', 'microservices', 'engineering']
+date: '2024-01-18'
+author: 'Elena Rodriguez'
 ---
 
-This is another example content item showing how to use different metadata fields and structure your content.
+Three years ago, we made the decision to break our Rails monolith into microservices. Last month, we completed the migration back to a monolith. Here's what happened.
 
-## Metadata Options
+## The Original Decision
 
-You can include various metadata in the frontmatter:
+Like many growing startups, we hit scaling challenges around our third year. The monolith was becoming unwieldy—deploys took 45 minutes, tests ran for over an hour, and developer productivity was suffering.
 
-- title (required)
-- topic
-- image
-- summary
-- tags
-- date
-- author
-- custom fields
+The solution seemed obvious: microservices. Everyone was doing it. Netflix, Amazon, Uber. If it worked for them, surely it would work for us.
 
-## Content Structure
+## The Migration
 
-The content itself can include:
+We spent six months breaking out our first services:
 
-1. Markdown formatting
-2. Code blocks
-3. Images
-4. Custom components
+- **User Service** - Authentication and user management
+- **Billing Service** - Payments and subscriptions
+- **Notification Service** - Emails, push notifications, SMS
 
-Feel free to modify this structure based on your specific needs.
+The architecture looked clean on our whiteboard. In practice, things got complicated fast.
+
+## What Went Wrong
+
+### Distributed Systems are Hard
+
+Every network call introduced potential failure points. We needed retry logic, circuit breakers, and fallback behaviors. Simple operations that took 10 lines of code in the monolith became hundreds of lines across multiple services.
+
+### Developer Experience Suffered
+
+Running the full system locally became nearly impossible. Developers needed to understand Docker, Kubernetes, service discovery, and distributed tracing just to fix a simple bug.
+
+### Debugging Became a Nightmare
+
+A single user action might touch five services. Finding the root cause of issues required jumping between log streams, correlating request IDs, and understanding complex interaction patterns.
+
+### We Didn't Have the Team
+
+Microservices require dedicated platform engineers, DevOps expertise, and sophisticated monitoring. With a team of 15 engineers, we simply didn't have the bandwidth.
+
+## The Return
+
+After honest assessment, we realized our problems were never about the monolith—they were about code organization and testing practices.
+
+We consolidated back into a well-structured monolith with:
+
+- **Strong module boundaries** - Clear interfaces between domains
+- **Independent test suites** - Each module tested in isolation
+- **Feature flags** - Deploy independently without service boundaries
+- **Async processing** - Background jobs for heavy lifting
+
+## Lessons Learned
+
+1. **Match your architecture to your team size** - Microservices have overhead that requires dedicated resources
+2. **Solve the actual problem** - Our issues were about code organization, not deployment units
+3. **Simplicity has value** - The cognitive load of distributed systems is real and expensive
+4. **It's okay to change your mind** - Admitting a mistake and correcting course is engineering maturity
+
+## When Microservices Make Sense
+
+Microservices aren't bad—they're a tool. They make sense when:
+
+- You have truly independent teams that need to deploy separately
+- Your scale genuinely requires different technologies for different workloads
+- You have the platform team to support the infrastructure
+
+For everyone else, a well-organized monolith might just be the pragmatic choice.

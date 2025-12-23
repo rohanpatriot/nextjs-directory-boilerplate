@@ -1,0 +1,77 @@
+---
+title: 'Getting Started with Next.js'
+summary: 'Learn how to set up your first Next.js project and understand the fundamentals of this powerful React framework.'
+date: '2024-01-15'
+author: 'Alex Chen'
+image: '/example1.png'
+tags: ['nextjs', 'react', 'tutorial', 'beginner']
+topic: 'Web Development'
+---
+
+Next.js has become one of the most popular frameworks for building modern web applications. In this guide, we'll walk through setting up your first Next.js project and explore the key concepts that make it so powerful.
+
+## Why Next.js?
+
+Next.js provides several advantages over a standard React application:
+
+- **Server-Side Rendering (SSR)** - Pages are rendered on the server, improving SEO and initial load times
+- **Static Site Generation (SSG)** - Pre-render pages at build time for maximum performance
+- **File-based Routing** - Create routes simply by adding files to the `app` directory
+- **Built-in Optimizations** - Automatic image optimization, font loading, and more
+
+## Setting Up Your Project
+
+Getting started with Next.js is straightforward. You'll need Node.js 18+ installed on your machine.
+
+```bash
+npx create-next-app@latest my-app
+cd my-app
+npm run dev
+```
+
+This creates a new Next.js project with all the modern defaults including TypeScript, ESLint, and Tailwind CSS.
+
+## Understanding the App Router
+
+Next.js 13+ introduced the App Router, which uses a new paradigm for routing and layouts. Here's how it works:
+
+```
+app/
+  layout.tsx      # Root layout (applies to all pages)
+  page.tsx        # Home page (/)
+  about/
+    page.tsx      # About page (/about)
+  blog/
+    [slug]/
+      page.tsx    # Dynamic blog post (/blog/my-post)
+```
+
+Each `page.tsx` file becomes a route, and `layout.tsx` files wrap their child routes with shared UI.
+
+## Creating Your First Page
+
+Pages in Next.js are React components. Here's a simple example:
+
+```tsx
+export default function HomePage() {
+  return (
+    <main className="min-h-screen p-8">
+      <h1 className="text-4xl font-bold">Welcome to My Site</h1>
+      <p className="mt-4 text-gray-600">
+        This is my first Next.js application!
+      </p>
+    </main>
+  );
+}
+```
+
+## Next Steps
+
+Now that you have a basic Next.js app running, you can:
+
+1. Add more pages and routes
+2. Connect a database or CMS
+3. Deploy to Vercel with one click
+4. Explore the official Next.js documentation
+
+Happy coding!
