@@ -5,14 +5,14 @@
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
-[![GitHub Stars](https://img.shields.io/github/stars/rohanpatriot/nextjs-directory-boilerplate?style=for-the-badge&logo=github)](https://github.com/rohanpatriot/nextjs-directory-boilerplate/stargazers)
-[![Deploy with Vercel](https://img.shields.io/badge/Deploy-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Frohanpatriot%2Fnextjs-directory-boilerplate)
+[![GitHub Stars](https://img.shields.io/github/stars/rohanpatriot/nextjs-boilerplate-directory-blog?style=for-the-badge&logo=github)](https://github.com/rohanpatriot/nextjs-boilerplate-directory-blog/stargazers)
+[![Deploy with Vercel](https://img.shields.io/badge/Deploy-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Frohanpatriot%2Fnextjs-boilerplate-directory-blog)
 
 </div>
 
 A modern, customizable directory/blog template built with Next.js 15, MDX, and shadcn/ui. Perfect for creating content-driven websites, directories, portfolios, blogs, or educational content collections.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Frohanpatriot%2Fnextjs-directory-boilerplate&project-name=nextjs-directory-boilerplate&repository-name=nextjs-directory-boilerplate&skippable-integrations=1)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Frohanpatriot%2Fnextjs-boilerplate-directory-blog&project-name=nextjs-boilerplate-directory-blog&repository-name=nextjs-boilerplate-directory-blog&skippable-integrations=1)
 
 ---
 
@@ -74,8 +74,8 @@ Automatic dark mode with system preference detection and manual toggle - no extr
 
 ```bash
 # Clone the repository
-git clone https://github.com/rohanpatriot/nextjs-directory-boilerplate
-cd nextjs-directory-boilerplate
+git clone https://github.com/rohanpatriot/nextjs-boilerplate-directory-blog
+cd nextjs-boilerplate-directory-blog
 
 # Install dependencies
 pnpm install
@@ -170,7 +170,7 @@ See [Configuration docs](docs/configuration.md) for full reference.
 
 Comprehensive documentation is available online and in the repository:
 
-- 📖 **[View Documentation](https://rohanpatriot.github.io/nextjs-directory-boilerplate/docs/)** - Online docs via GitHub Pages
+- 📖 **[View Documentation](https://rohanpatriot.github.io/nextjs-boilerplate-directory-blog/docs/)** - Online docs via GitHub Pages
 - 📁 **[docs/](docs/)** - Local documentation folder
 
 ### Quick Links

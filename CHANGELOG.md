@@ -60,6 +60,6 @@ We welcome contributions! Please check our issues and pull requests to see how y
 ### Support
 For questions, issues, or feature requests, please open an issue on GitHub.
 
-[unreleased]: https://github.com/rohanpatriot/nextjs-directory-boilerplate/compare/v0.2.0...HEAD
-[0.2.0]: https://github.com/rohanpatriot/nextjs-directory-boilerplate/compare/v0.1.0...v0.2.0
-[0.1.0]: https://github.com/rohanpatriot/nextjs-directory-boilerplate/releases/tag/v0.1.0
+[unreleased]: https://github.com/rohanpatriot/nextjs-boilerplate-directory-blog/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/rohanpatriot/nextjs-boilerplate-directory-blog/compare/v0.1.0...v0.2.0
+[0.1.0]: https://github.com/rohanpatriot/nextjs-boilerplate-directory-blog/releases/tag/v0.1.0

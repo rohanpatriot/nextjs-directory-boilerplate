@@ -22,8 +22,8 @@ brew install pnpm
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/rohanpatriot/nextjs-directory-boilerplate
-cd nextjs-directory-boilerplate
+git clone https://github.com/rohanpatriot/nextjs-boilerplate-directory-blog
+cd nextjs-boilerplate-directory-blog
 ```
 
 2. **Install dependencies**

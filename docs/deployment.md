@@ -6,7 +6,7 @@ The easiest way to deploy is using Vercel:
 
 ### One-Click Deploy
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Frohanpatriot%2Fnextjs-directory-boilerplate&project-name=nextjs-directory-boilerplate&repository-name=nextjs-directory-boilerplate&skippable-integrations=1)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Frohanpatriot%2Fnextjs-boilerplate-directory-blog&project-name=nextjs-boilerplate-directory-blog&repository-name=nextjs-boilerplate-directory-blog&skippable-integrations=1)
 
 ### Manual Deploy
 
