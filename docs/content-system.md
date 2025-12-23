@@ -7,11 +7,12 @@ The unified content system manages all your content through a single, config-dri
 ```
 content/
   articles/          # Blog articles
-    my-post.mdx
-    another-post.mdx
-  stories/           # Stories (or any content type)
-    story-one.mdx
-    story-two.mdx
+    example-1.mdx
+    example-2.mdx
+  stories/           # Stories with virtue cards
+    androcles-and-the-lion.mdx
+    david-and-mephibosheth.mdx
+    george-washington-and-the-cherry-tree.mdx
   [custom-type]/     # Add your own types
 ```
 

@@ -23,7 +23,7 @@ A unified, config-driven content system supports multiple content types from a s
 ```
 content/
   articles/     # Blog articles
-  stories/      # Story content with virtue cards
+  stories/      # Story content with virtue cards and audio
   [custom]/     # Add new content types via config
 ```
 
@@ -63,17 +63,35 @@ content/
 
 ### Key Files
 
-- `src/lib/content/` - Unified content system (types.ts, loader.ts, index.ts)
+- `src/lib/content/` - Unified content system
+  - `loader.ts` - Content loading and querying
+  - `types.ts` - TypeScript type definitions
+  - `index.ts` - Public API exports
 - `src/lib/metadata.ts` - SEO metadata generation
-- `src/types/content.ts` - TypeScript interfaces
+- `src/lib/structured-data.tsx` - JSON-LD schema helpers
+- `src/types/content.ts` - Additional TypeScript interfaces
 
 ### Component Patterns
 
-- UI primitives in `src/components/ui/` are shadcn/ui components (button, card, input, badge, slider)
+- UI primitives in `src/components/ui/` are shadcn/ui components (button, card, input, badge, slider, dialog, dropdown-menu, command, etc.)
+- Layout components in `src/components/layout/`:
+  - `ContentCard` - Content item cards with variants (default, featured, compact)
+  - `ContentGrid` - Grid layout for content cards
 - Search functionality in `src/components/Search/` with useSearch hook
-- Layout components (ContentCard, ContentGrid) handle content display
-- ThemeProvider and ThemeToggle for dark mode support
-- AudioPlayer component for optional audio playback
+- Navigation components:
+  - `Header` - Main navigation with mobile menu, search shortcut, theme toggle
+  - `Footer` - Site footer
+  - `MobileMenu` - Responsive mobile navigation
+  - `Breadcrumbs` - Breadcrumb navigation
+- Theme components:
+  - `ThemeProvider` - next-themes provider wrapper
+  - `ThemeToggle` - Theme switcher button
+- Media components:
+  - `AudioPlayer` - Optional audio playback with controls
+- Utility components:
+  - `Pagination` - Page navigation
+  - `TagFilter` - Tag filtering
+  - `ErrorBoundary` - React error boundary
 
 ### Dark Mode
 
