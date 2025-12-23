@@ -1,0 +1,121 @@
+---
+title: 'Building a Component Design System'
+summary: 'A practical guide to creating reusable UI components that scale with your project and maintain consistency across your application.'
+date: '2024-01-10'
+author: 'Sarah Mitchell'
+image: '/example2.png'
+tags: ['design-system', 'components', 'ui', 'best-practices']
+topic: 'Design'
+---
+
+A well-designed component system is the foundation of any maintainable web application. In this guide, we'll explore how to create a scalable design system that promotes consistency and speeds up development.
+
+## What is a Design System?
+
+A design system is a collection of reusable components, patterns, and guidelines that help teams build consistent user interfaces. It includes:
+
+- **Design tokens** - Colors, spacing, typography values
+- **Components** - Buttons, inputs, cards, modals
+- **Patterns** - Common UI patterns like forms, navigation
+- **Documentation** - Usage guidelines and examples
+
+## Starting with Design Tokens
+
+Design tokens are the atomic values that define your visual language. Store them in a central location:
+
+```css
+:root {
+  /* Colors */
+  --color-primary: #3b82f6;
+  --color-secondary: #64748b;
+  --color-background: #ffffff;
+  --color-foreground: #0f172a;
+  
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  
+  /* Typography */
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-heading: 'Cal Sans', serif;
+}
+```
+
+## Building a Button Component
+
+Let's create a flexible button component as an example:
+
+```tsx
+import { cva, type VariantProps } from 'class-variance-authority';
+
+const buttonVariants = cva(
+  'inline-flex items-center justify-center rounded-md font-medium transition-colors',
+  {
+    variants: {
+      variant: {
+        primary: 'bg-primary text-white hover:bg-primary/90',
+        secondary: 'bg-secondary text-white hover:bg-secondary/90',
+        outline: 'border border-input bg-background hover:bg-accent',
+      },
+      size: {
+        sm: 'h-8 px-3 text-sm',
+        md: 'h-10 px-4 text-base',
+        lg: 'h-12 px-6 text-lg',
+      },
+    },
+    defaultVariants: {
+      variant: 'primary',
+      size: 'md',
+    },
+  }
+);
+
+export function Button({ variant, size, ...props }) {
+  return (
+    <button className={buttonVariants({ variant, size })} {...props} />
+  );
+}
+```
+
+## Composition Over Configuration
+
+Good components are composable. Instead of adding endless props, create smaller building blocks:
+
+```tsx
+// Instead of this:
+<Card showHeader showFooter showImage variant="featured" />
+
+// Prefer this:
+<Card>
+  <CardHeader>
+    <CardTitle>My Card</CardTitle>
+  </CardHeader>
+  <CardContent>
+    Content goes here
+  </CardContent>
+  <CardFooter>
+    <Button>Action</Button>
+  </CardFooter>
+</Card>
+```
+
+## Documentation is Key
+
+Document each component with:
+
+1. **Purpose** - What problem does it solve?
+2. **Props** - What options are available?
+3. **Examples** - Show common use cases
+4. **Accessibility** - Keyboard navigation, ARIA labels
+
+## Key Takeaways
+
+- Start with design tokens before building components
+- Keep components focused and composable
+- Use variant patterns for consistent styling options
+- Always document your components
+- Test across different contexts and screen sizes
+
+A good design system is never "finished" - it evolves with your product and team needs.

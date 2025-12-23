@@ -23,7 +23,7 @@ A unified, config-driven content system supports multiple content types from a s
 ```
 content/
   articles/     # Blog articles
-  stories/      # Story content with virtue cards and audio
+  guides/       # How-to guides and tutorials
   [custom]/     # Add new content types via config
 ```
 
@@ -55,7 +55,7 @@ content/
 ### Routes
 
 - `/` - Home page with all content
-- `/[contentType]` - Content type listing (e.g., `/articles`, `/stories`)
+- `/[contentType]` - Content type listing (e.g., `/articles`, `/guides`)
 - `/[contentType]/[slug]` - Content detail page
 - `/tags/[tag]` - Tag-filtered content
 - `/feed.xml` - RSS feed

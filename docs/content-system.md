@@ -9,10 +9,11 @@ content/
   articles/          # Blog articles
     example-1.mdx
     example-2.mdx
-  stories/           # Stories with virtue cards
-    androcles-and-the-lion.mdx
-    david-and-mephibosheth.mdx
-    george-washington-and-the-cherry-tree.mdx
+    web-performance-essentials.mdx
+  guides/            # How-to guides and tutorials
+    getting-started-with-nextjs.mdx
+    building-a-design-system.mdx
+    content-strategy-for-developers.mdx
   [custom-type]/     # Add your own types
 ```
 
@@ -62,7 +63,6 @@ const hello = 'world';
 | `image` | string | Featured image path (relative to /public) |
 | `topic` | string | Content topic or category |
 | `audioUrl` | string | URL to audio file (for audio-enabled types) |
-| `virtue` | string | Virtue/lesson field (for stories) |
 
 ### Type-Specific Fields
 

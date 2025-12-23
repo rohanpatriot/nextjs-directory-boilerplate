@@ -1,0 +1,117 @@
+---
+title: 'Web Performance Essentials for Modern Applications'
+topic: 'Performance'
+image: '/example1.png'
+summary: 'A practical guide to measuring, understanding, and improving the performance of your web applications.'
+tags: ['performance', 'web-vitals', 'optimization']
+date: '2024-01-12'
+author: 'David Park'
+---
+
+Performance isn't just about speed—it's about user experience, SEO, and ultimately, business success. Google's research shows that 53% of mobile users abandon sites that take longer than 3 seconds to load.
+
+## The Metrics That Matter
+
+Google's Core Web Vitals have become the standard for measuring user experience:
+
+### Largest Contentful Paint (LCP)
+
+Measures loading performance. Aim for LCP under 2.5 seconds. This is when the main content of your page becomes visible.
+
+### First Input Delay (FID)
+
+Measures interactivity. Users should be able to interact with your page within 100ms of trying. Long JavaScript tasks block the main thread and delay this.
+
+### Cumulative Layout Shift (CLS)
+
+Measures visual stability. Nothing frustrates users more than clicking a button only to have the page shift and click something else. Keep CLS under 0.1.
+
+## Quick Wins
+
+Here are optimizations that typically provide the biggest impact:
+
+### 1. Optimize Images
+
+Images are usually the heaviest assets on a page:
+
+```jsx
+// Use Next.js Image component for automatic optimization
+import Image from 'next/image';
+
+<Image
+  src="/hero.jpg"
+  alt="Hero image"
+  width={1200}
+  height={600}
+  priority // For above-the-fold images
+  placeholder="blur"
+/>
+```
+
+### 2. Minimize JavaScript
+
+Every kilobyte of JavaScript has a cost:
+
+- Code split with dynamic imports
+- Tree shake unused code
+- Defer non-critical scripts
+- Use modern, lighter alternatives to heavy libraries
+
+### 3. Leverage Caching
+
+Set appropriate cache headers:
+
+```js
+// next.config.js
+async headers() {
+  return [
+    {
+      source: '/_next/static/:path*',
+      headers: [
+        {
+          key: 'Cache-Control',
+          value: 'public, max-age=31536000, immutable',
+        },
+      ],
+    },
+  ];
+}
+```
+
+### 4. Use a CDN
+
+Serve static assets from edge locations close to your users. Vercel, Cloudflare, and AWS CloudFront all provide excellent CDN solutions.
+
+## Measuring Performance
+
+You can't improve what you don't measure:
+
+1. **Lighthouse** - Built into Chrome DevTools
+2. **WebPageTest** - Detailed waterfall analysis
+3. **Real User Monitoring (RUM)** - Track actual user experiences
+
+## The Performance Budget
+
+Set and enforce limits:
+
+- JavaScript bundle: < 200KB (gzipped)
+- First contentful paint: < 1.8s
+- Time to interactive: < 3.9s
+
+Include performance checks in your CI/CD pipeline to catch regressions before they reach production.
+
+## Common Mistakes
+
+Avoid these performance anti-patterns:
+
+- Loading fonts from Google Fonts without preconnect
+- Not lazy-loading below-the-fold images
+- Blocking rendering with synchronous scripts
+- Not compressing assets
+- Missing width/height on images (causes layout shift)
+
+## Start Today
+
+Pick one metric to improve this week. Run Lighthouse, identify your biggest bottleneck, and fix it. Small, consistent improvements compound into significant gains.
+
+Performance is a feature. Treat it like one.

@@ -91,7 +91,7 @@ Open [http://localhost:3000](http://localhost:3000) to see your site.
 ```
 ├── content/                  # MDX content files
 │   ├── articles/            # Blog articles
-│   └── stories/             # Story content
+│   └── guides/              # How-to guides and tutorials
 │   └── [custom]/            # Add your own content types
 ├── src/
 │   ├── app/                 # Next.js App Router
@@ -125,7 +125,7 @@ Open [http://localhost:3000](http://localhost:3000) to see your site.
 
 ## ✍️ Content
 
-Add MDX files to `content/articles/` or `content/stories/`:
+Add MDX files to `content/articles/` or `content/guides/`:
 
 ```mdx
 ---
@@ -158,7 +158,7 @@ export const directoryConfig = {
 export const contentConfig = {
   types: {
     articles: { /* config */ },
-    stories: { /* config */ },
+    guides: { /* config */ },
     // Add your own types
   }
 }
