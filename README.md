@@ -170,18 +170,18 @@ See [Configuration docs](docs/configuration.md) for full reference.
 
 Comprehensive documentation is available online and in the repository:
 
-- 📖 **[Online Documentation](https://rohanpatriot.github.io/nextjs-directory-boilerplate/)** - GitHub Pages hosted docs
+- 📖 **[View Documentation](https://rohanpatriot.github.io/nextjs-directory-boilerplate/docs/)** - Online docs via GitHub Pages
 - 📁 **[docs/](docs/)** - Local documentation folder
 
 ### Quick Links
 
-- [Getting Started](https://rohanpatriot.github.io/nextjs-directory-boilerplate/getting-started) - Installation and first steps
-- [Content System](https://rohanpatriot.github.io/nextjs-directory-boilerplate/content-system) - Adding and managing content
-- [Configuration](https://rohanpatriot.github.io/nextjs-directory-boilerplate/configuration) - Site and content config reference
-- [SEO](https://rohanpatriot.github.io/nextjs-directory-boilerplate/seo) - Sitemap, RSS, metadata, and structured data
-- [Dark Mode](https://rohanpatriot.github.io/nextjs-directory-boilerplate/dark-mode) - Theming and customization
-- [Components](https://rohanpatriot.github.io/nextjs-directory-boilerplate/components) - Available UI components
-- [Deployment](https://rohanpatriot.github.io/nextjs-directory-boilerplate/deployment) - Deploying to Vercel and other platforms
+- [Getting Started](docs/getting-started.md) - Installation and first steps
+- [Content System](docs/content-system.md) - Adding and managing content
+- [Configuration](docs/configuration.md) - Site and content config reference
+- [SEO](docs/seo.md) - Sitemap, RSS, metadata, and structured data
+- [Dark Mode](docs/dark-mode.md) - Theming and customization
+- [Components](docs/components.md) - Available UI components
+- [Deployment](docs/deployment.md) - Deploying to Vercel and other platforms
 
 ## 🤝 Contributing
 

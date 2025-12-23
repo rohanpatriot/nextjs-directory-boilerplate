@@ -1,132 +1,61 @@
-# Next.js Directory/Blog Boilerplate Documentation
+# Documentation
 
-Welcome to the comprehensive documentation for the Next.js Directory/Blog Boilerplate - a modern, customizable template for building content-driven websites.
+Welcome to the Next.js Directory/Blog Boilerplate documentation.
 
-[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=next.js)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](../LICENSE)
+> **📖 View Online:** This documentation is also available on [GitHub Pages](https://rohanpatriot.github.io/nextjs-directory-boilerplate/docs/)
 
-## Quick Navigation
+## Quick Links
 
-### Getting Started
-- [Installation & Setup](getting-started.md) - Get up and running in minutes
-- [Project Structure](getting-started.md#project-structure) - Understanding the codebase
-- [First Customization](getting-started.md#first-customization) - Make it yours
-
-### Core Features
-- [Content System](content-system.md) - MDX-powered content management
-- [Configuration](configuration.md) - Customize site and content settings
-- [Components](components.md) - UI components and patterns
-- [SEO](seo.md) - Built-in SEO optimization
-
-### Advanced Topics
+- [Getting Started](getting-started.md) - Installation and first steps
+- [Content System](content-system.md) - Adding and managing content
+- [Configuration](configuration.md) - Site and content config reference
+- [SEO](seo.md) - Sitemap, RSS, metadata, and structured data
 - [Dark Mode](dark-mode.md) - Theming and customization
-- [Deployment](deployment.md) - Deploy to production
-- [Solutions](solutions/README.md) - Common issues and solutions
+- [Components](components.md) - Available UI components
+- [Deployment](deployment.md) - Deploying to production
 
-## What's Inside
+## Overview
 
-This boilerplate provides everything you need to build a modern content-driven website:
-
-### 🎯 Core Features
+This boilerplate provides a flexible, config-driven system for building content-driven websites. Key features:
 
 - **Unified Content System** - Manage multiple content types (articles, stories, custom types) from a single configuration
 - **SEO-First Design** - Automatic sitemap, RSS feed, and JSON-LD structured data
 - **Dark Mode** - System preference detection with manual toggle
 - **Type-Safe** - Full TypeScript support throughout
-- **Modern Stack** - Next.js 15, React 19, Tailwind CSS, shadcn/ui
 
-### 📦 What You Get
-
-```
-✅ MDX Content Support           ✅ Responsive Design
-✅ Dynamic Routing               ✅ Tag Filtering
-✅ Search Functionality          ✅ Pagination
-✅ Audio Player Support          ✅ Image Optimization
-✅ RSS Feed                      ✅ XML Sitemap
-✅ Structured Data (JSON-LD)     ✅ Open Graph Tags
-✅ Twitter Cards                 ✅ Theme Toggle
-```
-
-## Architecture Overview
+## Architecture
 
 ```
-📁 content/              # Your MDX content files
-   ├── articles/         # Blog articles
-   ├── stories/          # Stories with audio
-   └── [custom]/         # Add your own types
-
-📁 src/
-   ├── app/             # Next.js App Router pages
-   │   ├── [contentType]/  # Dynamic content routes
-   │   ├── tags/        # Tag filtering
-   │   └── feed.xml/    # RSS feed
-   ├── components/      # React components
-   │   ├── layout/      # Layout components
-   │   ├── Search/      # Search functionality
-   │   └── ui/          # shadcn/ui components
-   ├── config/          # Configuration files
-   └── lib/             # Utilities and helpers
-       └── content/     # Content loading system
+content/              # Your MDX content files
+src/
+  app/               # Next.js App Router pages
+  components/        # React components
+  config/            # Configuration files
+  lib/
+    content/         # Content loading system
 ```
 
-## Quick Start
+The content system reads MDX files from the `content/` directory, parses frontmatter metadata, and serves them through dynamic routes.
 
-```bash
-# Clone the repository
-git clone https://github.com/rohanpatriot/nextjs-directory-boilerplate
-cd nextjs-directory-boilerplate
+## Support
 
-# Install dependencies
-pnpm install
-
-# Start development server
-pnpm dev
-```
-
-Visit [http://localhost:3000](http://localhost:3000) to see your site.
-
-## Key Concepts
-
-### Content Types
-
-Define custom content types with their own features, layouts, and behaviors. Each type can have:
-
-- Custom frontmatter fields
-- Unique display options
-- Type-specific features (audio, tags, images, etc.)
-- Custom sorting and pagination
-
-### Configuration-Driven
-
-Two main configuration files control the entire system:
-
-1. **`directory.config.ts`** - Site-wide settings (name, SEO, features)
-2. **`content.config.ts`** - Content type definitions and behaviors
-
-### SEO Built-In
-
-Every page automatically includes:
-
-- Meta tags (title, description, keywords)
-- Open Graph tags for social sharing
-- Twitter Card tags
-- JSON-LD structured data
-- Canonical URLs
-- XML sitemap
-- RSS feed
-
-## Need Help?
-
-- 📖 [Full Documentation](https://rohanpatriot.github.io/nextjs-directory-boilerplate/)
-- 🐛 [Report Issues](https://github.com/rohanpatriot/nextjs-directory-boilerplate/issues)
-- 💬 [Discussions](https://github.com/rohanpatriot/nextjs-directory-boilerplate/discussions)
-- ⭐ [Star on GitHub](https://github.com/rohanpatriot/nextjs-directory-boilerplate)
-
-## License
-
-This project is released under the [MIT License](../LICENSE).
+- [GitHub Issues](https://github.com/rohanpatriot/nextjs-directory-boilerplate/issues)
+- [GitHub Discussions](https://github.com/rohanpatriot/nextjs-directory-boilerplate/discussions)
 
 ---
 
-**Ready to dive in?** Start with [Getting Started](getting-started.md) →
+## GitHub Pages Setup
+
+To enable the built-in GitHub Pages for this documentation:
+
+1. Go to your repository **Settings** → **Pages**
+2. Under "Build and deployment":
+   - **Source**: Deploy from a branch
+   - **Branch**: `main`
+   - **Folder**: `/docs`
+3. Click **Save**
+
+GitHub will automatically serve the documentation at:
+`https://[your-username].github.io/nextjs-directory-boilerplate/docs/`
+
+No additional configuration needed! GitHub Pages will automatically render the Markdown files.
