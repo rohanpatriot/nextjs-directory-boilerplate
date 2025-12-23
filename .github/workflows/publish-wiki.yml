@@ -40,8 +40,8 @@ jobs:
           # We use find to avoid deleting .git directory
           find . -mindepth 1 -not -path './.git' -not -path './.git/*' -exec rm -rf {} +
           
-          # Copy docs content to wiki
-          cp -r ../docs/* .
+          # Copy docs content to wiki (including hidden files)
+          cp -r ../docs/. .
           
           # Rename README.md to Home.md for Wiki landing page
           if [ -f "README.md" ]; then
