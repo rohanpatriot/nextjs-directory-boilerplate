@@ -82,11 +82,12 @@ ENV PORT=3000
 CMD ["node", "server.js"]
 ```
 
-For standalone output, add to `next.config.ts`:
+For standalone output, add to `next.config.mjs`:
 
-```typescript
+```javascript
 const nextConfig = {
   output: 'standalone',
+  pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
 };
 ```
 
@@ -101,11 +102,12 @@ docker run -p 3000:3000 my-site
 
 For static hosting (GitHub Pages, S3, etc.):
 
-1. Add to `next.config.ts`:
+1. Add to `next.config.mjs`:
 
-```typescript
+```javascript
 const nextConfig = {
   output: 'export',
+  pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
 };
 ```
 
@@ -117,23 +119,29 @@ pnpm build
 
 3. Deploy the `out/` directory
 
-Note: Static export doesn't support:
-- Dynamic routes with server-side features
-- API routes
-- Incremental Static Regeneration
+**Note:** Static export has limitations:
+- Dynamic routes work with `generateStaticParams` at build time
+- No server-side API routes
+- No Incremental Static Regeneration
+- This boilerplate uses static generation so it should work with export mode
 
 ## Build Configuration
 
-### next.config.ts Options
+### next.config.mjs Options
 
-```typescript
-import type { NextConfig } from 'next';
+The boilerplate uses `next.config.mjs` for configuration.
 
-const nextConfig: NextConfig = {
-  // Enable React strict mode
+```javascript
+import createMDX from '@next/mdx';
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
+  
+  // Enable React strict mode (optional)
   reactStrictMode: true,
 
-  // Image optimization domains
+  // Image optimization domains (if using external images)
   images: {
     remotePatterns: [
       {
@@ -143,7 +151,7 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  // Redirect configuration
+  // Redirect configuration (optional)
   async redirects() {
     return [
       {
@@ -154,7 +162,7 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  // Header configuration
+  // Header configuration (optional)
   async headers() {
     return [
       {
@@ -170,7 +178,11 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+const withMDX = createMDX({
+  // Add markdown plugins here, as desired
+});
+
+export default withMDX(nextConfig);
 ```
 
 ## Pre-Deployment Checklist
@@ -202,13 +214,15 @@ export default nextConfig;
 pnpm add -D @next/bundle-analyzer
 ```
 
-```typescript
-// next.config.ts
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
+```javascript
+// next.config.mjs
+import withBundleAnalyzer from '@next/bundle-analyzer';
+
+const bundleAnalyzer = withBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 });
 
-export default withBundleAnalyzer(nextConfig);
+export default bundleAnalyzer(withMDX(nextConfig));
 ```
 
 ```bash

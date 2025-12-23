@@ -63,12 +63,12 @@ Automatic dark mode with system preference detection and manual toggle - no extr
 ## 🛠️ Tech Stack
 
 - **Framework**: [Next.js 15](https://nextjs.org/) with React 19
-- **Package Manager**: [pnpm](https://pnpm.io/)
+- **Package Manager**: [pnpm](https://pnpm.io/) 9.x
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **UI Components**: [shadcn/ui](https://ui.shadcn.com/)
 - **Content**: [MDX](https://mdxjs.com/)
 - **Theming**: [next-themes](https://github.com/pacocoursey/next-themes)
-- **Typography**: Google Fonts (Cormorant Garamond & Nunito)
+- **Typography**: [next/font/google](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) (Cormorant Garamond & Nunito)
 
 ## 🚀 Quick Start
 
@@ -92,22 +92,35 @@ Open [http://localhost:3000](http://localhost:3000) to see your site.
 ├── content/                  # MDX content files
 │   ├── articles/            # Blog articles
 │   └── stories/             # Story content
+│   └── [custom]/            # Add your own content types
 ├── src/
 │   ├── app/                 # Next.js App Router
 │   │   ├── [contentType]/   # Dynamic content routes
+│   │   │   └── [slug]/      # Content detail pages
 │   │   ├── tags/            # Tag pages
+│   │   │   └── [tag]/       # Tag-filtered content
 │   │   ├── feed.xml/        # RSS feed
 │   │   ├── sitemap.ts       # Dynamic sitemap
 │   │   └── robots.ts        # Robots.txt
 │   ├── components/          # React components
+│   │   ├── layout/          # Layout components
+│   │   │   ├── ContentCard.tsx
+│   │   │   └── ContentGrid.tsx
+│   │   ├── Search/          # Search components
 │   │   └── ui/              # shadcn/ui components
 │   ├── config/              # Configuration
 │   │   ├── content.config.ts    # Content type definitions
 │   │   └── directory.config.ts  # Site settings
-│   └── lib/
-│       ├── content/         # Content system
-│       ├── metadata.ts      # SEO metadata
-│       └── structured-data.tsx  # JSON-LD schemas
+│   ├── lib/
+│   │   ├── content/         # Content system
+│   │   │   ├── loader.ts    # Content loader
+│   │   │   ├── types.ts     # TypeScript types
+│   │   │   └── index.ts     # Exports
+│   │   ├── metadata.ts      # SEO metadata
+│   │   ├── structured-data.tsx  # JSON-LD schemas
+│   │   └── utils.ts         # Utility functions
+│   └── types/               # TypeScript type definitions
+│       └── content.ts       # Content interfaces
 ```
 
 ## ✍️ Content
@@ -155,7 +168,12 @@ See [Configuration docs](docs/configuration.md) for full reference.
 
 ## 📚 Documentation
 
-Detailed documentation is available in the [docs/](docs/) folder:
+Comprehensive documentation is available online and in the repository:
+
+- 📖 **[View Documentation](https://rohanpatriot.github.io/nextjs-directory-boilerplate/docs/)** - Online docs via GitHub Pages
+- 📁 **[docs/](docs/)** - Local documentation folder
+
+### Quick Links
 
 - [Getting Started](docs/getting-started.md) - Installation and first steps
 - [Content System](docs/content-system.md) - Adding and managing content

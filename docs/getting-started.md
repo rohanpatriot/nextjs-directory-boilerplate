@@ -3,7 +3,7 @@
 ## Prerequisites
 
 - **Node.js** 18.17 or later
-- **pnpm** 9.x (recommended) or npm/yarn
+- **pnpm** 9.15 or later (recommended) or npm/yarn
 
 ### Installing pnpm
 

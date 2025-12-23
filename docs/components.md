@@ -80,10 +80,10 @@ import { Slider } from '@/components/ui/slider';
 
 Displays a content item in card format.
 
-**Location:** `src/components/ContentCard.tsx`
+**Location:** `src/components/layout/ContentCard.tsx`
 
 ```typescript
-import { ContentCard } from '@/components/ContentCard';
+import ContentCard from '@/components/layout/ContentCard';
 
 <ContentCard item={contentItem} />
 ```
@@ -100,27 +100,35 @@ Features controlled by content type config:
 
 Displays a grid of content cards.
 
-**Location:** `src/components/ContentGrid.tsx`
+**Location:** `src/components/layout/ContentGrid.tsx`
 
 ```typescript
-import { ContentGrid } from '@/components/ContentGrid';
+import ContentGrid from '@/components/layout/ContentGrid';
 
 <ContentGrid items={contentItems} />
 ```
 
 ## Navigation Components
 
-### Navbar
+### Header
 
-Site header with navigation and theme toggle.
+Modern site header with navigation, search, and theme toggle.
 
-**Location:** `src/components/Navbar.tsx`
+**Location:** `src/components/Header.tsx`
 
 ```typescript
-import { Navbar } from '@/components/Navbar';
+import { Header } from '@/components/Header';
 
-<Navbar />
+<Header />
 ```
+
+Features:
+- Responsive navigation with mobile menu
+- Scroll-based styling with backdrop blur
+- Content type navigation links
+- Search shortcut (⌘K/Ctrl+K)
+- Theme toggle
+- Active route indicators
 
 ### Pagination
 
@@ -137,6 +145,44 @@ import { Pagination } from '@/components/Pagination';
   basePath="/articles"
 />
 ```
+
+### Footer
+
+Site footer with copyright and optional links.
+
+**Location:** `src/components/Footer.tsx`
+
+```typescript
+import { Footer } from '@/components/Footer';
+
+<Footer />
+```
+
+### Breadcrumbs
+
+Navigation breadcrumbs for better UX.
+
+**Location:** `src/components/Breadcrumbs.tsx`
+
+```typescript
+import { Breadcrumbs } from '@/components/Breadcrumbs';
+
+<Breadcrumbs
+  items={[
+    { label: 'Home', href: '/' },
+    { label: 'Articles', href: '/articles' },
+    { label: 'Current Article' }
+  ]}
+/>
+```
+
+### MobileMenu
+
+Slide-out mobile navigation menu.
+
+**Location:** `src/components/MobileMenu.tsx`
+
+Used internally by the Header component for responsive navigation.
 
 ### TagFilter
 
@@ -171,6 +217,12 @@ import { SearchInput } from '@/components/Search/SearchInput';
 />
 ```
 
+### Search Index
+
+Main search component with integrated filtering.
+
+**Location:** `src/components/Search/index.tsx`
+
 ### useSearch Hook
 
 **Location:** `src/components/Search/useSearch.ts`
@@ -178,8 +230,23 @@ import { SearchInput } from '@/components/Search/SearchInput';
 ```typescript
 import { useSearch } from '@/components/Search/useSearch';
 
-const { query, setQuery, filteredItems } = useSearch(items);
+const {
+  searchResults,
+  currentPage,
+  setCurrentPage,
+  selectedTags,
+  handleSearch,
+  handleTagSelect,
+  totalPages,
+  allTags,
+} = useSearch(items);
 ```
+
+Features:
+- Real-time search filtering
+- Tag-based filtering
+- Pagination support
+- Combined search and tag filters
 
 ## Media Components
 
@@ -261,7 +328,7 @@ pnpm dlx shadcn@latest add accordion
 
 ## Creating Custom Components
 
-1. Create file in `src/components/`
+1. Create file in `src/components/` (or `src/components/layout/` for layout components)
 2. Use existing UI primitives for consistency
 3. Follow the established patterns:
 
@@ -286,3 +353,10 @@ export function MyComponent({ title, onAction }: MyComponentProps) {
   );
 }
 ```
+
+### Component Organization
+
+- `src/components/ui/` - shadcn/ui primitives (button, card, input, etc.)
+- `src/components/layout/` - Layout components (ContentCard, ContentGrid)
+- `src/components/Search/` - Search-related components
+- `src/components/` - General components (Header, Footer, ThemeToggle, etc.)

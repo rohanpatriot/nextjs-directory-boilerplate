@@ -2,6 +2,8 @@
 
 Welcome to the Next.js Directory/Blog Boilerplate documentation.
 
+> **📖 View Online:** This documentation is also available on [GitHub Pages](https://rohanpatriot.github.io/nextjs-directory-boilerplate/docs/)
+
 ## Quick Links
 
 - [Getting Started](getting-started.md) - Installation and first steps
@@ -39,3 +41,21 @@ The content system reads MDX files from the `content/` directory, parses frontma
 
 - [GitHub Issues](https://github.com/rohanpatriot/nextjs-directory-boilerplate/issues)
 - [GitHub Discussions](https://github.com/rohanpatriot/nextjs-directory-boilerplate/discussions)
+
+---
+
+## GitHub Pages Setup
+
+To enable the built-in GitHub Pages for this documentation:
+
+1. Go to your repository **Settings** → **Pages**
+2. Under "Build and deployment":
+   - **Source**: Deploy from a branch
+   - **Branch**: `main`
+   - **Folder**: `/docs`
+3. Click **Save**
+
+GitHub will automatically serve the documentation at:
+`https://[your-username].github.io/nextjs-directory-boilerplate/docs/`
+
+No additional configuration needed! GitHub Pages will automatically render the Markdown files.
