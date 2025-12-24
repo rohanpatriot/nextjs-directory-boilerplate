@@ -29,6 +29,12 @@ export function generateBaseMetadata(): Metadata {
       : undefined,
     creator: seoConfig.defaultAuthor,
     publisher: directoryConfig.name,
+    icons: {
+      icon: [
+        { url: '/favicon.svg', type: 'image/svg+xml' },
+      ],
+      apple: '/logo.svg',
+    },
     robots: {
       index: true,
       follow: true,
