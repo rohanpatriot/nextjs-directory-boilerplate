@@ -91,15 +91,20 @@ content/
 
 ## Environment Variables
 
-Create a `.env.local` file for local development:
+Copy the example environment file and update values for your environment:
 
 ```bash
-# Required for production
-NEXT_PUBLIC_SITE_URL=https://your-domain.com
-
-# Optional: Google Search Console verification
-GOOGLE_SITE_VERIFICATION=your-verification-code
+cp .env.example .env.local
 ```
+
+Then edit `.env.local` with your values:
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `NEXT_PUBLIC_SITE_URL` | Yes | Your production URL (e.g., `https://your-domain.com`) |
+| `GOOGLE_SITE_VERIFICATION` | No | Google Search Console verification code |
+
+See `.env.example` for all available options and documentation.
 
 ## Next Steps
 
