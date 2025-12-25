@@ -295,19 +295,20 @@ import { ThemeToggle } from '@/components/ThemeToggle';
 <ThemeToggle />
 ```
 
-### ErrorBoundary
+### Error Handling
 
-React error boundary for graceful error handling.
+Next.js App Router error handling using `error.tsx` files.
 
-**Location:** `src/components/ErrorBoundary.tsx`
+**Global Error Handler:** `src/app/error.tsx`  
+**Content Type Error Handler:** `src/app/[contentType]/error.tsx`  
+**Content Detail Error Handler:** `src/app/[contentType]/[slug]/error.tsx`
 
-```typescript
-import { ErrorBoundary } from '@/components/ErrorBoundary';
+These error boundaries automatically catch errors in their respective route segments and provide:
+- User-friendly error messages
+- Reset functionality to retry failed operations
+- Contextual navigation options (back to list, home)
 
-<ErrorBoundary fallback={<ErrorMessage />}>
-  <MyComponent />
-</ErrorBoundary>
-```
+Error boundaries are configured automatically by Next.js - no manual wrapping required.
 
 ## Adding New shadcn/ui Components
 
