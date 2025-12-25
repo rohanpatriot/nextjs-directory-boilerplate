@@ -25,7 +25,7 @@ export default function Error({
         <p className="text-muted-foreground">
           {error.message || 'An error occurred while loading this content type'}
         </p>
-        <div className="flex gap-3 justify-center pt-4">
+        <div className="flex flex-wrap gap-3 justify-center pt-4">
           <Button onClick={reset}>Try again</Button>
           <Button variant="outline" asChild>
             <Link href="/" className="inline-flex items-center gap-2">
